@@ -1,0 +1,87 @@
+﻿@using FormularioRegistro.Models
+@model Cliente
+
+
+<style>
+    form {
+        padding: 1.5em 1em;
+    }
+    #profile {
+        width: 10em;
+        height: 10em;
+        margin: 1em auto;
+    }    
+    .form-control, .form-control-file {
+        margin-bottom: 0.5em;
+    }
+</style>
+
+@using (Html.BeginForm("CrearCliente", "Cliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    
+    <div class="form-row">
+        <div class="col-md-4">
+            <img id="profile" src="@Url.Content("ImageFile")"  class="img-thumbnail"/>
+            <input type="file" accept="" class="form-control-file" name="ImageFile" id="ImageFile" onchange="ImagePreview(this)" required />
+        </div>
+        <div class="col-md-8">
+            <h5 class="text-center">Informacion basica</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido" } })
+                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Genre, new SelectList(Enum.GetValues(typeof(Sex))), "Selecciona tu genero", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.FechaNac, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaNac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo electronico" } })
+                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" value="Guardar cliente" class="btn btn-block btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    function ImagePreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profile').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
