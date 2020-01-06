@@ -1,0 +1,86 @@
+﻿@model FormularioRegistro.Models.Cliente
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<style>
+    header {
+        padding-top: 2em;
+    }
+    form {
+        margin-top: 2em;
+    }
+
+    #profile {
+        width: 10em;
+        height: 10em;
+    }
+
+    .form-control {
+        margin-bottom: 1em;
+    }
+
+    
+</style>
+
+<header class="row">
+    <div class="col-md-2">
+        <div>
+            @Html.ActionLink("Volver", "Index", null, new { @id = "back", @class = "btn btn-outline-secondary" })
+        </div>
+    </div>
+    <div class="col-md-10">
+        <h3 class="text-center">Editar Cliente</h3>
+    </div>
+</header>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-row">
+        <div class="col-md-4">
+            <img id="profile" src="@Url.Content(Model.ImagePath)" />
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EnumDropDownListFor(model => model.Genre, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <input name="FechaNac" type="text" value="@Model.FechaNac.ToString("MM/dd/yyyy")" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.FechaNac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" value="Guardar cambios" class="btn btn-block btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

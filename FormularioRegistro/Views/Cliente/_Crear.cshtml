@@ -23,7 +23,7 @@
     
     <div class="form-row">
         <div class="col-md-4">
-            <img id="profile" src="@Url.Content("ImageFile")"  class="img-thumbnail"/>
+            <img id="profile" src="@Url.Content("ImageFile")" />
             <input type="file" accept="" class="form-control-file" name="ImageFile" id="ImageFile" onchange="ImagePreview(this)" required />
         </div>
         <div class="col-md-8">
@@ -70,14 +70,15 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
     function ImagePreview(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#profile').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profile').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
     }
+   
 </script>
 
 

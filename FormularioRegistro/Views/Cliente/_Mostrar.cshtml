@@ -6,7 +6,7 @@
     }
     #profile {
         width: 5em;
-        height: auto;
+        height: 5em;
     }
 </style>
 
@@ -62,8 +62,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.ID })
                 </td>
             </tr>
 

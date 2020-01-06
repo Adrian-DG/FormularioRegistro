@@ -1,0 +1,83 @@
+﻿@model FormularioRegistro.Models.Cliente
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<style>
+    header {
+        padding-top: 2em;
+        margin-bottom: 1em;
+    }
+    #profile {
+        width: 10em;
+        height: 10em;
+    }
+    .row {
+        margin-bottom: 1em;
+    }
+    .container {
+        margin-top: 1em;
+    }
+    .col-md-10 {
+        margin-top: 1em;
+    }
+</style>
+
+<header>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.ActionLink("Volver", "Index",null, new { @class = "btn btn-outline-secondary" })
+        </div>
+        <div class="col-md-10">
+           <h3 class="text-center">Desea eliminar cliente ?</h3>
+        </div>
+    </div>
+</header>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content(Model.ImagePath)" id="profile"/>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>@Html.DisplayNameFor(model => model.Nombre): </strong>
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+                <div class="col-md-6">
+                    <strong>@Html.DisplayNameFor(model => model.Apellido): </strong>
+                    @Html.DisplayFor(model => model.Apellido)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>@Html.DisplayNameFor(model => model.Genre): </strong>
+                    @Html.DisplayFor(model => model.Genre)
+                </div>
+                <div class="col-md-6">
+                    <strong>@Html.DisplayNameFor(model => model.FechaNac): </strong>
+                    @Html.DisplayFor(model => model.FechaNac)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>@Html.DisplayNameFor(model => model.Correo): </strong>
+                    @Html.DisplayFor(model => model.Correo)
+                </div>
+                <div class="col-md-6">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
